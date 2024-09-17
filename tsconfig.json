@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "outDir": "./docs",
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "*": ["src/types/*"]
-    },
-    "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,12 +19,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": false,
-    "noEmitOnError": false,
-    "jsx": "react",
-    "downlevelIteration": true,
-    "declaration": true
+    "noEmit": true,
+    "jsx": "react-jsx"
   },
-  "include": ["src", "src/custom.d.ts"],
-  "exclude": ["node_modules", "docs"]
+  "include": [
+    "src",
+    "src/custom.d.ts"
+  ]
 }
