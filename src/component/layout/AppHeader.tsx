@@ -32,7 +32,7 @@ export const AppHeader = () => {
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
-  return <Flex justify="space-between" align="center" minH="5rem" padding="0 3rem" bgColor="white"
+  return <Flex justify="space-between" align="center" minH="5rem" padding={{base: "0rem 2rem", sm: "0rem 6rem"}} bgColor="white"
     position={isOpen ? "sticky" : "relative"} top="0" w="100%" zIndex="1">
 
     <Text variant={TextVariants.header_title} color="primary">
