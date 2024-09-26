@@ -16,7 +16,7 @@ export const Button = defineStyleConfig({
     backgroundColor: 'white',
     transition: hoverColorTransition,
     _hover: {
-      backgroundColor: 'interactions.500',
+      backgroundColor: 'secondary', //TODO
     },
   },
   variants: {
@@ -37,9 +37,9 @@ export const Button = defineStyleConfig({
       },
     },
     risen_secondary: {
-      backgroundColor: 'secondary.1000',
+      backgroundColor: 'secondary',
       _hover: {
-        backgroundColor: 'secondary.500',
+        backgroundColor: 'error', //TODO
       },
       position: 'relative',
       top: '0px',
@@ -56,10 +56,10 @@ export const Button = defineStyleConfig({
         top: '4px',
       },
     },
-    risen_accent: {
-      backgroundColor: 'accent',
+    risen_tertiary: {
+      backgroundColor: 'tertiary',
       _hover: {
-        backgroundColor: 'error',
+        backgroundColor: 'error', //TODO
       },
       position: 'relative',
       top: '0px',
