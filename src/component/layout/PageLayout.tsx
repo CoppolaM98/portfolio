@@ -1,10 +1,8 @@
-import { Box, Flex } from "@chakra-ui/react";
-import { CSSProperties, ReactNode } from "react";
+import { Flex, FlexProps } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
-export const PageLayout = ({children, style}: {children: ReactNode, style?: CSSProperties}) => {
- return <Box minHeight="calc(100vh - 4rem)" padding="4rem 6rem" backgroundColor="primary">
-    <Flex minHeight="calc(100% - 2rem)" padding="2rem 3rem" backgroundColor="white" direction="column" style={style}>
-        {children}
+export const PageLayout = (flexProps:  FlexProps ) => {
+    return <Flex padding="4rem 6rem" backgroundColor="primary" flex="1">
+        <Flex w="100%" padding="2rem 3rem" backgroundColor="white" direction="column" {...flexProps}/>
     </Flex>
- </Box>
 }

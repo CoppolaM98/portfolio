@@ -6,7 +6,7 @@ import { PageLayout } from "component/layout/PageLayout";
 
 
 export const CatClothesHangerPage = () => {
-    return <PageLayout style={{gap: "1rem"}}>
+    return <PageLayout gap="1rem">
         <img src={catClothesHangerImg} style={{width: "100%", maxHeight: "calc(100vh - 4rem)", objectFit: "contain"}} alt="project detail - first"/>
         <img src={catClothesHangerImg2} style={{width: "100%", maxHeight: "calc(100vh - 4rem)", objectFit: "contain"}} alt="project detail - second"/>
         <video src={catClothesHangerVid} style={{width: "100%", maxHeight: "calc(100vh - 4rem)", objectFit: "contain"}} controls/>
