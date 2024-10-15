@@ -1,12 +1,13 @@
 import { Button, Flex, Hide, Img, Show, Text } from "@chakra-ui/react";
-import burgerIcon from "assets/icons/burger.svg";
 import { ReactNode, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { TextVariants } from "styles/chakra/Text";
 
+import MenuIcon from "assets/icons/menu.svg"
+
 const appHeaderEntries: { to: string, title: ReactNode }[] = [{
-  to: "/",
-  title: "HOMEPAGE"
+  to: "/projects",
+  title: "PROGETTI"
 }, {
   to: "/about-us",
   title: "CHI SIAMO"
@@ -30,12 +31,19 @@ export const AppHeaderLink = ({ children, to, onClick }: { to: string, children:
 
 export const AppHeader = () => {
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isCurrentPath = location.pathname === "/"
+
   const [isOpen, setOpen] = useState<boolean>(false);
 
-  return <Flex justify="space-between" align="center" minH="5rem" padding={{base: "0rem 2rem", sm: "0rem 6rem"}} bgColor="white"
+  return <Flex justify="space-between" align="center" minH="5rem" padding={{ base: "0rem 2rem", sm: "0rem 6rem" }} bgColor="white"
     position={isOpen ? "sticky" : "relative"} top="0" w="100%" zIndex="1">
 
-    <Text variant={TextVariants.header_title} color="primary">
+    <Text variant={TextVariants.header_title} color="primary" cursor={isCurrentPath ? undefined : "pointer"} onClick={() => {
+      navigate("/");
+    }}>
       TITOLO
     </Text>
 
@@ -51,7 +59,7 @@ export const AppHeader = () => {
 
     <Hide above="lg">
       <Button w="3rem" h="3rem" p="0.5rem 0.5rem" onClick={() => setOpen(o => !o)}>
-        <Img src={burgerIcon} />
+        <Img src={MenuIcon} />
       </Button>
       <Flex position="absolute" bottom="0" right="0" h="calc(100vh - 100%)"
         w={isOpen ? { base: "100vw", md: "40vw" } : 0} transform="translateY(100%)">

@@ -1,0 +1,1 @@
+export const getStringPrefixer = (prefix: string) => (suffix: string) => prefix + suffix

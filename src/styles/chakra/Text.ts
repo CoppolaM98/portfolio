@@ -32,7 +32,7 @@ const variants: { [key in TextVariants]: any } = {
   },
   subtitle: {
     fontWeight: 'bold',
-    fontSize: '1.125rem',
+    fontSize: '1.062rem',
     letterSpacing: 0,
     lineHeight: 1,
   },

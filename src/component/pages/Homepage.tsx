@@ -1,47 +1,91 @@
-import { Button, Flex, Img, SimpleGrid, Text } from "@chakra-ui/react";
+import { Button, Flex, FlexProps, Image, Text } from "@chakra-ui/react";
 import { PageLayout } from "component/layout/PageLayout";
-import { useNavigate } from "react-router-dom";
-
-import catClothesHangerImg from "assets/cat_clothes_hanger/cat_clothes_hanger.jpeg";
-import nuvolaImg from "assets/nuvola/nuvola.jpeg";
+import { ReactNode, useEffect, useState } from "react";
 import { TextVariants } from "styles/chakra/Text";
+import { ProjectBlockRenderer } from "utils/projectRenderers/ProjectBlockRenderer";
 
-interface HomepageBlockProps { imageSrc: string, title: string, to: string };
+import { getProjectsList } from "api/projects/projects";
+import { useDebounce } from "utils/hooks/useDebounce";
 
-export const HomepageBlock = ({ imageSrc, title, to }: HomepageBlockProps) => {
-  const navigate = useNavigate();
+import ChevronIcon from "assets/icons/chevron.svg";
+import { AsyncLifecycleDependantContent } from "utils/layout/AsyncLifecycleContent";
 
-  return <Button p="1rem 1rem" h="100%" onClick={() => navigate(to)}>
-    <Flex direction="column" h="100%">
-    <Text variant={TextVariants.content}>{title}</Text>
-    <Img src={imageSrc} w="100%" objectFit="contain" flex="1" />
+const Carousel = ({ children, ...flexProps }: FlexProps & { children: ReactNode[] }) => {
+  const [visibleIndex, setVisibleIndex] = useState<number>(0);
+
+  const [, setAnimationInterval] = useState<NodeJS.Timeout>();
+  const [debouncedPlay, handlePlayRequest] = useDebounce<boolean>(true, 500);
+
+  const startAnimation = () => {
+    setAnimationInterval(interval => {
+      clearInterval(interval);
+      return setInterval(() => {
+        setVisibleIndex(i => {
+          i++;
+          if (i === children.length) i = 0;
+          return i
+        })
+      }, 5000)
+    })
+  }
+
+  const stopAnimation = () => setAnimationInterval(interval => {
+    clearInterval(interval)
+    return undefined
+  });
+
+  useEffect(() => {
+    if (debouncedPlay) startAnimation()
+    else stopAnimation()
+  }, [debouncedPlay])
+
+
+  return <Flex position="relative" overflow="hidden" {...flexProps} onMouseOver={() => handlePlayRequest(false)} onMouseOut={() => handlePlayRequest(true)}>
+    {children.map((child, index) => <Flex h="100%" w="100%" position="absolute" left={index * 100 + "%"} transform={`translateX(${-visibleIndex * 100}%)`}>
+      {child}
+    </Flex>)}
+    <Flex h="100%" w="100%" position="absolute" align="center" px="2rem">
+      <Flex w="100%" justifyContent="space-between">
+        <Button onClick={() => {
+          handlePlayRequest(false);
+          setVisibleIndex(i => {
+            if (i === 0) i = children.length;
+            return i - 1
+          })
+        }}
+          w="3rem" h="3rem" p="0.5rem 0.5rem" >
+          <Image src={ChevronIcon} transform="rotateZ(-90deg)" />
+        </Button>
+        <Button onClick={() => {
+          handlePlayRequest(false);
+          setVisibleIndex(i => {
+            i++;
+            if (i === children.length) i = 0;
+            return i
+          })
+        }}
+          w="3rem" h="3rem" p="0.5rem 0.5rem" >
+          <Image src={ChevronIcon} transform="rotateZ(90deg)" />
+        </Button>
       </Flex>
-  </Button>
+    </Flex>
+  </Flex>
 }
 
-const HomepageBlocks: HomepageBlockProps[] = [
-  {
-    title: "Nuvola",
-    to: "/nuvola",
-    imageSrc: nuvolaImg
-  },
-  {
-    title: "Appendiabiti gatto",
-    to: "/catclotheshanger",
-    imageSrc: catClothesHangerImg
-  }
-]
-
 export const Homepage = () => {
+
   return <PageLayout>
-    <Text variant={TextVariants.page_title}>Lista progetti</Text>
-    <SimpleGrid w="100%" columns={{
-      base: 1,
-      md: 2,
-      lg: 3,
-      xl: 4
-    }} gap={6}>
-      {HomepageBlocks.map(block => <HomepageBlock {...block} />)}
-    </SimpleGrid>
+    <AsyncLifecycleDependantContent promiseGenerator={() => getProjectsList()}>
+      {projects =>
+        <>
+          <Text variant={TextVariants.page_title}>Homepage</Text>
+          <Carousel w="100%" h="100%" bgColor="green">
+            {projects.map((project) =>
+              <ProjectBlockRenderer project={project} h="100%" w="100%" />
+            )}
+          </Carousel>
+        </>
+      }
+    </AsyncLifecycleDependantContent>
   </PageLayout>
 };
