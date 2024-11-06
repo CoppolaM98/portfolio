@@ -1,0 +1,42 @@
+{
+  "color": {
+    "gray-50": "#f1f1f1",
+    "gray-200": "#d3d3d3",
+    "gray-400": "#afafaf",
+    "gray-600": "#7c7c7c",
+    "gray-800": "#343434",
+    "gray-900": "#202020",
+    "gray-medical-white": "#ffffff",
+    "brand-digital-blue": "#3750cc",
+    "brand-medical-green": "#6aefd9",
+    "brand-medical-secondary": "#b4f7ec",
+    "brand-ecg-yellow": "#ffd95c",
+    "brand-donation-red": "#ff5c6b"
+  },
+  "spacing": {
+    "1": 8,
+    "2": 12,
+    "3": 16,
+    "4": 24,
+    "5": 28,
+    "6": 32,
+    "7": 40,
+    "8": 48,
+    "9": 56,
+    "10": 64,
+    "11": 72,
+    "12": 80,
+    "13": 88,
+    "14": 96,
+    "15": 104,
+    ",5": 4
+  },
+  "radius": {
+    "sm": 4,
+    "md": 8,
+    "lg": 16,
+    "xl": 24,
+    "2xl": 32,
+    "3xl": 360
+  }
+}

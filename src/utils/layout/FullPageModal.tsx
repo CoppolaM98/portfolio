@@ -1,4 +1,5 @@
 import { Flex, FlexProps } from "@chakra-ui/react"
+import { AppColors } from "styles/types/primitives.types"
 
 export const FullPageModal = (props: FlexProps) => {
   return <Flex
@@ -9,7 +10,7 @@ export const FullPageModal = (props: FlexProps) => {
     left="0"
     opacity="0.8"
     zIndex="2"
-    backgroundColor="secondary"
+    backgroundColor={AppColors["brand-digital-blue"]}
     {...props}
   />
 }

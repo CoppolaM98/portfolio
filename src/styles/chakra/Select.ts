@@ -3,6 +3,7 @@ import {
   createMultiStyleConfigHelpers
 } from '@chakra-ui/styled-system';
 import { getColor, mode } from '@chakra-ui/theme-tools';
+import { AppColors } from 'styles/types/primitives.types';
 
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(parts.keys);
@@ -24,9 +25,9 @@ const variantFilled = definePartsStyle(props => {
       border: '4px solid',
       borderColor: 'interactions.500',
       backgroundColor: "white",
-      bg: mode('gray.100', 'whiteAlpha.50')(props),
+      bg: AppColors['gray-50'],
       _hover: {
-        bg: mode('gray.200', 'whiteAlpha.100')(props),
+        bg: AppColors['gray-200'],
       },
       _readOnly: {
         boxShadow: 'none !important',
@@ -46,6 +47,17 @@ const variantFilled = definePartsStyle(props => {
   };
 });
 
+const variants = {
+  filled: variantFilled,
+}
+
+export const SelectVariants: {[key in keyof typeof variants]: key} = {
+  filled: 'filled'
+}
+
+
+
+
 export const Select = defineMultiStyleConfig({
   baseStyle: {
     field: {
@@ -62,11 +74,9 @@ export const Select = defineMultiStyleConfig({
       },
     },
   },
-  variants: {
-    filled: variantFilled,
-  },
+  variants,
   defaultProps: {
     size: 'md',
-    variant: 'filled',
+    variant: SelectVariants.filled,
   },
 });

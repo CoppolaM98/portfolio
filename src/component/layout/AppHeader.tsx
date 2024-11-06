@@ -1,14 +1,17 @@
 import { Button, Flex, Hide, Img, Show, Text } from "@chakra-ui/react";
 import { ReactNode, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { TextVariants } from "styles/chakra/Text";
+import { TextVariants } from "styles/types/text.types"
 
 import MenuIcon from "assets/icons/menu.svg"
+import { AppColors, AppSpacings } from "styles/types/primitives.types";
 
-const appHeaderEntries: { to: string, title: ReactNode }[] = [{
+const appHeaderEntries: { id: string, to: string, title: ReactNode }[] = [{
+  id: "proj",
   to: "/projects",
   title: "PROGETTI"
 }, {
+  id: "about",
   to: "/about-us",
   title: "CHI SIAMO"
 }]
@@ -19,7 +22,7 @@ export const AppHeaderLink = ({ children, to, onClick }: { to: string, children:
   const navigate = useNavigate();
 
   const isCurrentPath = location.pathname === to
-  const variant = isCurrentPath ? TextVariants["header_entry.selected"] : TextVariants.header_entry
+  const variant = isCurrentPath ? TextVariants["Body/Large/Bold"] : TextVariants["Body/Large/Regular"]
 
   return <Text cursor={isCurrentPath ? undefined : "pointer"} variant={variant} onClick={() => {
     onClick?.();
@@ -38,19 +41,19 @@ export const AppHeader = () => {
 
   const [isOpen, setOpen] = useState<boolean>(false);
 
-  return <Flex justify="space-between" align="center" minH="5rem" padding={{ base: "0rem 2rem", sm: "0rem 6rem" }} bgColor="white"
+  return <Flex justify="space-between" align="center" minH="5rem" padding={{ base: "0rem 2rem", sm: "0rem 6rem" }} bgColor={"white"}
     position={isOpen ? "sticky" : "relative"} top="0" w="100%" zIndex="1">
 
-    <Text variant={TextVariants.header_title} color="primary" cursor={isCurrentPath ? undefined : "pointer"} onClick={() => {
+    <Text variant={TextVariants["Body/Large/Bold"]} color={AppColors["brand-medical-secondary"]} cursor={isCurrentPath ? undefined : "pointer"} onClick={() => {
       navigate("/");
     }}>
       TITOLO
     </Text>
 
     <Show above='lg'>
-      <Flex align="center" h="100%" gap="1rem">
+      <Flex align="center" h="100%" gap={AppSpacings[2]}>
         {appHeaderEntries.map(e =>
-          <AppHeaderLink to={e.to}>
+          <AppHeaderLink key={e.id} to={e.to}>
             {e.title}
           </AppHeaderLink>
         )}
@@ -63,8 +66,8 @@ export const AppHeader = () => {
       </Button>
       <Flex position="absolute" bottom="0" right="0" h="calc(100vh - 100%)"
         w={isOpen ? { base: "100vw", md: "40vw" } : 0} transform="translateY(100%)">
-        <Flex bgColor="secondary" gap="1rem" direction="column" padding="2rem 2rem" w="100%">
-          {appHeaderEntries.map(e => <AppHeaderLink to={e.to} onClick={() => setOpen(false)}>
+        <Flex bgColor={AppColors["brand-medical-green"]} gap={AppSpacings[2]} direction="column" padding="2rem 2rem" w="100%">
+          {appHeaderEntries.map(e => <AppHeaderLink to={e.to} key={e.id} onClick={() => setOpen(false)}>
             {e.title}
           </AppHeaderLink>)}
         </Flex>

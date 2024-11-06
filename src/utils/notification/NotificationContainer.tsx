@@ -3,6 +3,7 @@ import { NotificationDetails, NotificationDetailsModal } from "./NotificationDet
 import { NotificationItem } from "./NotificationItem";
 import { notificationManager, NotificationRequestersMap, NotificationsChangeHandler } from "./NotificationManager";
 import { FullPageModal } from "utils/layout/FullPageModal";
+import { AppSpacings } from "styles/types/primitives.types";
 
 export const NotificationContainer = () => {
   const [state, setState] = useState<{ notifications: NotificationRequestersMap }>({
@@ -33,7 +34,7 @@ export const NotificationContainer = () => {
       <NotificationDetailsModal details={details} onHide={() => {
         setDetails(null);
       }} />
-      {state.notifications.size > 0 && <FullPageModal direction="column-reverse" alignItems="end" gap="1rem" p="2rem 1rem">
+      {state.notifications.size > 0 && <FullPageModal direction="column-reverse" alignItems="end" gap={AppSpacings[2]} p="2rem 1rem">
         {Array.from(state.notifications.entries()).map(([key, notificationData]) => (
           <NotificationItem
             notification={notificationData}

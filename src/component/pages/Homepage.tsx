@@ -1,7 +1,7 @@
 import { Button, Flex, FlexProps, Image, Text } from "@chakra-ui/react";
 import { PageLayout } from "component/layout/PageLayout";
 import { ReactNode, useEffect, useState } from "react";
-import { TextVariants } from "styles/chakra/Text";
+import { TextVariants } from "styles/types/text.types"
 import { ProjectBlockRenderer } from "utils/projectRenderers/ProjectBlockRenderer";
 
 import { getProjectsList } from "api/projects/projects";
@@ -9,6 +9,7 @@ import { useDebounce } from "utils/hooks/useDebounce";
 
 import ChevronIcon from "assets/icons/chevron.svg";
 import { AsyncLifecycleDependantContent } from "utils/layout/AsyncLifecycleContent";
+import { AppColors } from "styles/types/primitives.types";
 
 const Carousel = ({ children, ...flexProps }: FlexProps & { children: ReactNode[] }) => {
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
@@ -41,7 +42,7 @@ const Carousel = ({ children, ...flexProps }: FlexProps & { children: ReactNode[
 
 
   return <Flex position="relative" overflow="hidden" {...flexProps} onMouseOver={() => handlePlayRequest(false)} onMouseOut={() => handlePlayRequest(true)}>
-    {children.map((child, index) => <Flex h="100%" w="100%" position="absolute" left={index * 100 + "%"} transform={`translateX(${-visibleIndex * 100}%)`}>
+    {children.map((child, index) => <Flex key={"carouselContent" + index} h="100%" w="100%" position="absolute" left={index * 100 + "%"} transform={`translateX(${-visibleIndex * 100}%)`}>
       {child}
     </Flex>)}
     <Flex h="100%" w="100%" position="absolute" align="center" px="2rem">
@@ -78,10 +79,10 @@ export const Homepage = () => {
     <AsyncLifecycleDependantContent promiseGenerator={() => getProjectsList()}>
       {projects =>
         <>
-          <Text variant={TextVariants.page_title}>Homepage</Text>
-          <Carousel w="100%" h="100%" bgColor="green">
+          <Text variant={TextVariants["Body/Large/Bold"]}>Homepage</Text>
+          <Carousel w="100%" h="100%" bgColor={AppColors["brand-digital-blue"]}>
             {projects.map((project) =>
-              <ProjectBlockRenderer project={project} h="100%" w="100%" />
+              <ProjectBlockRenderer project={project} key={"carousel" + project.id} h="100%" w="100%" />
             )}
           </Carousel>
         </>
