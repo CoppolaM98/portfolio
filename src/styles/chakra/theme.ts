@@ -35,7 +35,7 @@ const formatAsCssVars = (prefix: PrefixType, obj: any) => mapObjToObj(obj, (key,
 export const theme = extendTheme({
   colors: primitives.color,
   radii: primitives.radius,
-  space: primitives.spacing,
+  space: mapObjToObj(primitives.spacing, (key, val) => ({key, val: val + "px"})),
   semanticTokens: {
     lineHeights: {
       ...mapObjToObj(AppLineHeight, (key) => ({ key, val: `var(${formatFigmaTokenKey(prefixes.lineheight, key)})` })),
