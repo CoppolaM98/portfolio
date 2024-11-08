@@ -1,0 +1,1 @@
+export type StringEnum<T extends string> = { [key in T]: key }

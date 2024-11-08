@@ -5,7 +5,6 @@ let intl: IntlShape;
 
 const initIntl = async (preferredLanguages: readonly string[]) => {
   const captionsData = await getCaptionsByPreferredLanguages(preferredLanguages)
-  console.info("InitIntl with", preferredLanguages, captionsData)
   
   intl = createIntl({
     locale: captionsData.locales[0],

@@ -1,6 +1,7 @@
 import { Flex, Spinner } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { loadingManager, LoadingChangeHandler, LoadingRequestersMap } from "./LoadingManager";
+import { AppColors } from "styles/types/primitives.types";
 
 export interface LoadingContainerState {
   requesters: LoadingRequestersMap;
@@ -44,7 +45,7 @@ export const LoadingContainer: React.FunctionComponent = () => {
         left="0"
         opacity="0.8"
         zIndex="2"
-        backgroundColor="secondary"
+        backgroundColor={AppColors["brand-digital-blue"]}
       >
         <Spinner />
       </Flex>

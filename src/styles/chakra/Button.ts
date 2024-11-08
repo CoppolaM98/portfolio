@@ -1,104 +1,43 @@
 import { defineStyleConfig } from '@chakra-ui/react';
 import { Text } from './Text';
+import { ButtonVariants } from 'styles/types/button.types';
 
-const hoverColorTransition = 'background-color 0.3s';
+export const buttonVariants = {
+  "risen": {
+    "position": "relative",
+    "top": "0px",
+    "borderTop": "4px",
+    "borderRight": "4px",
+    "borderBottom": "8px",
+    "borderLeft": "4px",
+    "transition": "top 0.3s, border-bottom 0.3s, background-color 0.3s",
+    "_active": {
+      "borderBottom": "4px",
+      "top": "4px"
+    }
+  },
+}
+
 
 export const Button = defineStyleConfig({
   // The styles all button have in common
   baseStyle: {
     ...Text.baseStyle,
-    ...Text.variants?.button,
+    ...Text.variants?.['Button/Small'],
 
     borderRadius: '10px',
-    borderColor: 'primary',
+    borderColor: 'black',
     borderStyle: 'solid',
 
     backgroundColor: 'white',
-    transition: hoverColorTransition,
+    transition: "background-color 0.3s",
     _hover: {
       backgroundColor: 'secondary',
     },
   },
-  variants: {
-    risen: {
-      position: 'relative',
-      top: '0px',
-
-      borderTop: '4px',
-      borderRight: '4px',
-      borderBottom: '8px',
-      borderLeft: '4px',
-
-      transition: 'top 0.3s, border-bottom 0.3s, ' + hoverColorTransition,
-
-      _active: {
-        borderBottom: '4px',
-        top: '4px',
-      },
-    },
-    risen_secondary: {
-      backgroundColor: 'secondary',
-      _hover: {
-        backgroundColor: 'error',
-      },
-      position: 'relative',
-      top: '0px',
-
-      borderTop: '4px',
-      borderRight: '4px',
-      borderBottom: '8px',
-      borderLeft: '4px',
-
-      transition: 'top 0.3s, border-bottom 0.3s, ' + hoverColorTransition,
-
-      _active: {
-        borderBottom: '4px',
-        top: '4px',
-      },
-    },
-    risen_tertiary: {
-      backgroundColor: 'tertiary',
-      _hover: {
-        backgroundColor: 'error',
-      },
-      position: 'relative',
-      top: '0px',
-
-      borderTop: '4px',
-      borderRight: '4px',
-      borderBottom: '8px',
-      borderLeft: '4px',
-
-      transition: 'top 0.3s, border-bottom 0.3s, ' + hoverColorTransition,
-
-      _active: {
-        borderBottom: '4px',
-        top: '4px',
-      },
-    },
-    risen_error: {
-      backgroundColor: 'error',
-      _hover: {
-        backgroundColor: 'accent',
-      },
-      position: 'relative',
-      top: '0px',
-
-      borderTop: '4px',
-      borderRight: '4px',
-      borderBottom: '8px',
-      borderLeft: '4px',
-
-      transition: 'top 0.3s, border-bottom 0.3s, ' + hoverColorTransition,
-
-      _active: {
-        borderBottom: '4px',
-        top: '4px',
-      },
-    },
-  },
+  variants: buttonVariants,
 
   defaultProps: {
-    variant: 'risen',
+    variant: ButtonVariants.risen,
   },
 });

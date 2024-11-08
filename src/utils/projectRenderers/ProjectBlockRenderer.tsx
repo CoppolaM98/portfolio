@@ -2,7 +2,7 @@ import { Button, ButtonProps, Flex, FlexProps, Image, Text } from "@chakra-ui/re
 import { VideoPlayer } from "component/media/VideoPlayer";
 import { ProjectData } from "models/ProjectData";
 import { useNavigate } from "react-router-dom";
-import { TextVariants } from "styles/chakra/Text";
+import { TextVariants } from "styles/types/text.types"
 import { getStringPrefixer } from "utils/stringUtils";
 
 import NoAssetIcon from "assets/icons/no_asset.svg";
@@ -16,7 +16,7 @@ export const ProjectBlockRenderer = ({ project, ...buttonProps }: { project: Pro
 
     return <Button p="1rem 1rem" h="100%" onClick={() => navigate("/project/" + project.id)} {...buttonProps}>
         <Flex direction="column" h="100%" justifyContent="center">
-            <Text variant={TextVariants.content}>{project.pageTitle}</Text>
+            <Text variant={TextVariants["Body/Large/Bold"]}>{project.pageTitle}</Text>
             {project.coverVideoSrc ?
                 <VideoPlayer src={getAssetsUrl(project.coverVideoSrc)} poster={project.coverImageSrc && getAssetsUrl(project.coverImageSrc)} {...styleProps} /> :
                 <Image src={project.coverImageSrc ? getAssetsUrl(project.coverImageSrc) : NoAssetIcon} {...styleProps} />

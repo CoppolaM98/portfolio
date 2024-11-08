@@ -1,6 +1,6 @@
 import { Flex, Image, Link, Text } from "@chakra-ui/react";
 import { useEffect, useMemo } from "react";
-import { TextVariants } from "styles/chakra/Text";
+import { TextVariants } from "styles/types/text.types"
 import { NotificationDetails } from "./NotificationDetailsModal";
 import { NotificationData } from "./NotificationManager";
 
@@ -9,6 +9,7 @@ import InfoIcon from "assets/icons/info.svg";
 import SuccessIcon from "assets/icons/success.svg";
 import WarningIcon from "assets/icons/warning.svg";
 import ErrorIcon from "assets/icons/error.svg";
+import { AppColors, AppSpacings } from "styles/types/primitives.types";
 
 
 function isElapsed(notif: NotificationData) {
@@ -36,25 +37,23 @@ export const NotificationItem = ({ notification, key, showModalDetails, onHide }
 
   const { notificationColor, iconSrc } = useMemo(() => {
     if (notification.type === "success")
-      return { iconSrc: SuccessIcon, notificationColor: "var(--color-green)" };
+      return { iconSrc: SuccessIcon, notificationColor: AppColors["brand-medical-green"] };
     if (notification.type === "error")
-      return { iconSrc: ErrorIcon, notificationColor: "var(--color-red)" };
+      return { iconSrc: ErrorIcon, notificationColor: AppColors["brand-donation-red"] };
     if (notification.type === "warning")
-      return { iconSrc: WarningIcon, notificationColor: "var(--color-yellow)" };
-    if (notification.type === "info")
-      return { iconSrc: InfoIcon, notificationColor: "var(--color-blue)" };
+      return { iconSrc: WarningIcon, notificationColor: AppColors["brand-ecg-yellow"] };
+    // DEFAULT if (notification.type === "info")
+      return { iconSrc: InfoIcon, notificationColor: AppColors["brand-digital-blue"] };
 
-
-    return { iconSrc: WarningIcon, notificationColor: "var(--color-red)" };
   }, [notification.type]);
 
   return (
 
-    <Flex w="100%" bgColor="white" gap="1rem" p=".5rem 1rem" border="2px solid black" borderRadius="1rem">
+    <Flex w="100%" bgColor={"white"} gap={AppSpacings[2]} p=".5rem 1rem" border="2px solid black" borderRadius="1rem">
       {notification.closable && <Image src={CloseIcon} w="1rem" h="1rem" cursor="pointer" onClick={() => onHide(key)} />}
       <Image src={iconSrc} w="1rem" h="1rem" />
-      <Flex direction="column" gap=".5rem" bgColor={notificationColor}>
-        <Text variant={TextVariants.subtitle}>{notification.title}</Text>
+      <Flex direction="column" gap={AppSpacings[1]} bgColor={notificationColor}>
+        <Text variant={TextVariants["Body/Small/Regular"]}>{notification.title}</Text>
         {notification.message && <Text>{notification.message}</Text>}
         {(notification.enableRefreshPanel || notification.details?.length) &&
           <Flex>

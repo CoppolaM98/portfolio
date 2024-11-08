@@ -1,0 +1,40 @@
+{
+  "fontFamily": {
+    "Desktop": {
+      "title": "DM Sans",
+      "body": "DM Sans"
+    }
+  },
+  "fontWeight": {
+    "Desktop": {
+      "Bold": "Bold",
+      "Medium": "Medium",
+      "Regular": "Regular"
+    }
+  },
+  "fontSize": {
+    "Desktop": {
+      "2xs": 14,
+      "xs": 16,
+      "s": 18,
+      "m": 20,
+      "l": 24,
+      "xl": 32,
+      "2xl": 40,
+      "3xl": 56,
+      "4xl": 72
+    }
+  },
+  "lineHeight": {
+    "Desktop": {
+      "2xs": 14,
+      "xs": 16,
+      "s": 18,
+      "m": 24,
+      "l": 32,
+      "xl": 40,
+      "2xl": 48,
+      "3xl": 56
+    }
+  }
+}

@@ -1,72 +1,123 @@
 import { defineStyleConfig } from '@chakra-ui/react';
+import { TextVariants } from 'styles/types/text.types';
+import { AppFontFamily, AppFontSize, AppLineHeight } from 'styles/types/typography.types';
 
-export enum TextVariants {
-  page_title = "page_title",
-  section_title = "section_title",
-  content = "content",
-  subtitle = "subtitle",
-  button = "button",
-  header_title = "header_title",
-  header_entry = "header_entry",
-  "header_entry.selected" = "header_entry.selected"
-};
-
-const variants: { [key in TextVariants]: any } = {
-  page_title: {
-    fontWeight: 'bold',
-    fontSize: '2.5rem',
-    letterSpacing: -0.01,
-    lineHeight: 1,
+export const textVariants = {
+  "Display/Large": {
+    "fontFamily": AppFontFamily.title,
+    "fontSize": AppFontSize['4xl'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["3xl"]
   },
-  section_title: {
-    fontWeight: 'bold',
-    fontSize: '2rem',
-    letterSpacing: -0.01,
-    lineHeight: 1,
+  "Display/Medium": {
+    "fontFamily": AppFontFamily.title,
+    "fontSize": AppFontSize['3xl'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["2xl"]
   },
-  content: {
-    fontWeight: 'regular',
-    fontSize: '1rem',
-    letterSpacing: 0.01,
-    lineHeight: 1.4,
+  "Display/Small": {
+    "fontFamily": AppFontFamily.title,
+    "fontSize": AppFontSize['2xl'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["xl"]
   },
-  subtitle: {
-    fontWeight: 'bold',
-    fontSize: '1.062rem',
-    letterSpacing: 0,
-    lineHeight: 1,
+  "Title/Large": {
+    "fontFamily": AppFontFamily.title,
+    "fontSize": AppFontSize['xl'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["l"]
   },
-
-
-  button: {
-    fontWeight: 'bold',
-    fontSize: '1rem',
-    letterSpacing: 0.01,
-    lineHeight: 1,
-    textTransform: 'uppercase',
+  "Title/Medium": {
+    "fontFamily": AppFontFamily.title,
+    "fontSize": AppFontSize['l'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["s"]
   },
-
-  header_title: {
-    fontWeight: 'bolder',
-    fontSize: '3rem',
-    letterSpacing: -0.01,
-    lineHeight: 1,
+  "Title/Small": {
+    "fontFamily": AppFontFamily.title,
+    "fontSize": AppFontSize['m'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["s"]
   },
-  header_entry: {
-    fontWeight: 'bold',
-    fontSize: '1.75rem',
-    letterSpacing: -0.01,
-    lineHeight: 1,
+  "Body/Large/Bold": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['m'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["m"]
   },
-  "header_entry.selected": {
-    fontWeight: 'normal',
-    fontSize: '1.25rem',
-    letterSpacing: -0.01,
-    lineHeight: 1,
+  "Body/Large/Regular": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['s'],
+    "fontStyle": "normal",
+    "fontWeight": 400,
+    "lineHeight": AppLineHeight["m"]
   },
+  "Body/Medium/Bold": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['s'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["m"]
+  },
+  "Body/Medium/Regular": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['s'],
+    "fontStyle": "normal",
+    "fontWeight": 400,
+    "lineHeight": AppLineHeight["m"]
+  },
+  "Body/Small/Bold": {
+    "fontFamily": "DM Sans",
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": "18px"
+  },
+  "Body/Small/Regular": {
+    "fontFamily": "DM Sans",
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": 400,
+    "lineHeight": "18px"
+  },
+  "Body/Smallest/Medium": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['2xs'],
+    "fontStyle": "normal",
+    "fontWeight": 500,
+    "lineHeight": AppLineHeight["2xs"]
+  },
+  "Body/Smallest/Regular": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['2xs'],
+    "fontStyle": "normal",
+    "fontWeight": 400,
+    "lineHeight": AppLineHeight["2xs"]
+  },
+  "Button/Big": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['s'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["s"],
+    "textTransform": "uppercase"
+  },
+  "Button/Small": {
+    "fontFamily": AppFontFamily.body,
+    "fontSize": AppFontSize['2xs'],
+    "fontStyle": "normal",
+    "fontWeight": 700,
+    "lineHeight": AppLineHeight["2xs"],
+    "textTransform": "uppercase"
+  }
 }
-
-
 
 export const Text = defineStyleConfig({
   // The styles all button have in common
@@ -74,8 +125,8 @@ export const Text = defineStyleConfig({
     fontFamily: 'DM Sans, Comic Sans, Arial',
     color: 'black',
   },
-  variants,
+  variants: textVariants,
   defaultProps: {
-    variant: TextVariants.content,
+    variant: TextVariants['Body/Medium/Regular'],
   },
 });
