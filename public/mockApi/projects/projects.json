@@ -64,64 +64,17 @@
             {
                 "type": "Text",
                 "variant": "content",
-                "content": "YEYE $wag"
+                "content": "Sezione1"
             },
             {
                 "type": "Text",
                 "variant": "section_title",
-                "content": "Valeria"
+                "content": "Titolo"
             },
             {
                 "type": "Text",
                 "variant": "content",
-                "content": "Valeria è troppbellassai"
-            },
-            {
-                "type": "Image",
-                "alt": "project detail - first",
-                "src": "cover.jpeg"
-            },
-            {
-                "type": "Image",
-                "alt": "project detail - second",
-                "src": "cover_2.jpeg"
-            },
-            {
-                "type": "Video",
-                "src": "cover.mp4",
-                "posterSrc": "cover.jpeg"
-            }
-        ]
-    },
-    {
-        "id": "copia",
-        "pageTitle": "copia",
-        "assetsDir": "/assets/cat_clothes_hanger/",
-        "categories": [
-            "1"
-        ],
-        "coverVideoSrc": "cover.mp4",
-        "coverImageSrc": "cover.jpeg",
-        "content": [
-            {
-                "type": "Text",
-                "variant": "page_title",
-                "content": "APPENDIABITI \"GATTO\""
-            },
-            {
-                "type": "Text",
-                "variant": "content",
-                "content": "YEYE $wag"
-            },
-            {
-                "type": "Text",
-                "variant": "section_title",
-                "content": "Valeria"
-            },
-            {
-                "type": "Text",
-                "variant": "content",
-                "content": "Valeria è troppbellassai"
+                "content": "Sezione2"
             },
             {
                 "type": "Image",

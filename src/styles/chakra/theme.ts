@@ -22,20 +22,22 @@ const prefixes: StringEnum<PrefixType> = {
   token: 'token'
 }
 
-const formatFigmaTokenKey = (prefix: PrefixType, key: string) => `--${prefix}-${key}`.replace(/([A-Z])/g, '-$1').toLowerCase()
 const mapObjToObj = (obj: any, cb: (key: string, val: any) => { key: string, val: any }) => obj && Object.keys(obj).reduce(
   (a, key) => {
     const entry = cb(key, obj[key]);
     a[entry.key] = entry.val;
     return a
   }, {} as any)
+const addUnit = (obj: any) => mapObjToObj(obj, (key, val) => ({ key, val: val + "px" }))
+
+const formatFigmaTokenKey = (prefix: PrefixType, key: string) => `--${prefix}-${key}`.replace(/([A-Z])/g, '-$1').toLowerCase()
 const formatAsCssVars = (prefix: PrefixType, obj: any) => mapObjToObj(obj, (key, val) => ({ key: formatFigmaTokenKey(prefix, key), val })) ?? {}
 
 
 export const theme = extendTheme({
   colors: primitives.color,
   radii: primitives.radius,
-  space: mapObjToObj(primitives.spacing, (key, val) => ({key, val: val + "px"})),
+  space: addUnit(primitives.spacing),
   semanticTokens: {
     lineHeights: {
       ...mapObjToObj(AppLineHeight, (key) => ({ key, val: `var(${formatFigmaTokenKey(prefixes.lineheight, key)})` })),
@@ -58,7 +60,7 @@ export const theme = extendTheme({
       html: {
         [`@media screen and (max-width: ${props.theme.breakpoints.md})`]: {
           ...formatAsCssVars(prefixes.fontsize, typography.fontSize.Mobile),
-          ...formatAsCssVars(prefixes.lineheight, typography.lineHeight.Mobile),
+          ...formatAsCssVars(prefixes.lineheight, addUnit(typography.lineHeight.Mobile)),
           ...formatAsCssVars(prefixes.fontweight, typography.fontWeight.Mobile),
           ...formatAsCssVars(prefixes.fontfamily, typography.fontFamily.Mobile),
           ...formatAsCssVars(prefixes.token, tokens.Mobile),
@@ -66,7 +68,7 @@ export const theme = extendTheme({
         },
         [`@media screen and (min-width: ${props.theme.breakpoints.md})`]: {
           ...formatAsCssVars(prefixes.fontsize, typography.fontSize.Desktop),
-          ...formatAsCssVars(prefixes.lineheight, typography.lineHeight.Desktop),
+          ...formatAsCssVars(prefixes.lineheight, addUnit(typography.lineHeight.Desktop)),
           ...formatAsCssVars(prefixes.fontweight, typography.fontWeight.Desktop),
           ...formatAsCssVars(prefixes.fontfamily, typography.fontFamily.Desktop),
           ...formatAsCssVars(prefixes.token, tokens.Desktop),

@@ -3,6 +3,6 @@ import { PageLayout } from "component/layout/PageLayout";
 
 export const AboutUs = () => {
   return <PageLayout>
-    <Text>Ammò si bell overament</Text>
+    <Text>Hello there!</Text>
     </PageLayout>;
 };
